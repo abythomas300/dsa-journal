@@ -11,11 +11,11 @@ class SinglyLinkedList{
         this.tail = null
         this.size = 0
     }
-    appendNode(data){ 
+    appendNode(data){ // T - O(1) constant time
         const newNode = new Node(data) 
         if(this.head === null){
-            this.head = newNode  // here
-            this.tail = this.head // here
+            this.head = newNode 
+            this.tail = this.head 
             this.size += 1 
             console.log(`New Node with value ${this.tail.value} appended`)
         } else {
@@ -25,21 +25,21 @@ class SinglyLinkedList{
             console.log(`New Node with value ${this.tail.value} appended`)
         }
     }
-    displaySize(){
+    displaySize(){  // T - O(1) constant time
         console.log(`This linked list has ${this.size} nodes.`)
     }
-    displayValues(){
-        let result = ''
-        if(this.head != null){
+    displayValues(){  // T - O(n) 
+        if(this.head === null) {
+            console.log("This list is empty") 
+        }else{
             let currentNode = this.head
-            while(currentNode.next != null){ //here
-                result = result + `${currentNode.value},`
-                currentNode = currentNode.next 
+            let result = ''
+            while(currentNode !== null) {
+                result += currentNode.value
+                if(currentNode.next != null) result += ','  // appending a comma after element if it is not the last element
+                currentNode = currentNode.next
             }
-            result = result + `${currentNode.value}`
             console.log(result)
-        } else {
-            console.log("This linked list is empty.")
         }
     }
     displayFinalValue(){
@@ -49,23 +49,8 @@ class SinglyLinkedList{
             console.log("This linked list is empty")
         }
     }
-    reverseList(){
-        let reversedListValues = []
-        if(this.head == null){
-            console.log("This list is empty.")
-        } else if(this.head.next == null){
-            console.log("This list has only one value: ", this.head.value)
-        } else {
-            let currentNode = this.head
-            while(currentNode.next != null){
-                reversedListValues.unshift(currentNode.value)
-                currentNode = currentNode.next
-            }
-            reversedListValues.unshift(currentNode.value)
-            console.log("Reversed List Values: ", reversedListValues)
-        }
-    }
-    prependNode(data){
+    
+    prependNode(data){  // t - O(1) constant time
         const newNode = new Node(data) // creating a new Node object
         if(this.head == null){
             this.head = newNode
@@ -106,13 +91,10 @@ list.displayValues()
 // display the total number of nodes in the list
 list.displaySize()
 
-
-
 // display the last node value in the list
 list.displayFinalValue()
 
-// reverse the list
-list.reverseList()
+// Optimized: Decrease space complexity to display() by O(1)
 
 
 
