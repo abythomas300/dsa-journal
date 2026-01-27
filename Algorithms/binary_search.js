@@ -36,7 +36,7 @@ for(let i = 1; i<=100000000; i++) {
 // function invoke
 const result = binarySearch(test_array, 100000000)
 
-console.log(`${result[0]}, search completed in ${result[1]} ms`)
+console.log(`${result[0]}, search completed in ${result[1]/1000} s`)
 
 // Computational Complexity
 // Time: O(log(n)), Space: O(1)
