@@ -1,0 +1,1 @@
+# clipboard manager core logic
