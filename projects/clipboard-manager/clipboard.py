@@ -1,6 +1,7 @@
 class Clip:
     def __init__(self, data):
         self.data = data
+        self.prev = None
         self.next = None
 
 class Clipboard:
@@ -9,6 +10,7 @@ class Clipboard:
         self.tail = None
         self.length = 0
         self.max_length = None
+        self.current_selected_clip = None
 
     def add_clip(self, data):
         # create a node
@@ -26,19 +28,17 @@ class Clipboard:
                 self.head.next = None
                 self.tail = self.head
                 new_node.next = self.head
-                self.head = new_node
+                self.head.prev = new_node
                 self.length -= 1
             else:
-                current = self.head
-                while current.next.next is not None:
-                    current = current.next
-
                 # deleting the last node
+                current = self.tail.prev
                 current.next = None
                 self.tail = current
                 self.length -= 1
                 # appending new clip
                 new_node.next = self.head
+                self.head.prev = new_node
 
         else: 
         # when max_length is not set
@@ -46,6 +46,7 @@ class Clipboard:
                 self.tail = new_node
             else:
                 new_node.next = self.head
+                self.head.prev = new_node
                 
         self.head = new_node
         self.length += 1
@@ -64,6 +65,7 @@ class Clipboard:
                 clips.append(current.data)
                 current = current.next
                 count += 1
+            print(clips) # test
             return clips
 
     def get_length(self):
@@ -108,5 +110,3 @@ class Clipboard:
         self.tail = None
         self.length = 0
         return True
-
-
