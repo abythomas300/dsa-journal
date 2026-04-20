@@ -49,8 +49,10 @@ class Clipboard:
                 self.head.prev = new_node
                 
         self.head = new_node
+        self.tail.next = self.head
+        self.head.prev = self.tail
         self.length += 1
-        self.current_selected_clip = None # reset current_selected_clip pointer
+        # self.current_selected_clip = None # reset current_selected_clip pointer
         return True
 
     def view_clips(self):
@@ -62,10 +64,13 @@ class Clipboard:
             clips = []
             current = self.head
             count = 1
-            while current is not None:
+            while current is not self.tail:
                 clips.append(current.data)
                 current = current.next
                 count += 1
+            # appending tail node's data
+            clips.append(current.data)
+            count += 1
             return clips
 
     def get_length(self):
@@ -118,11 +123,6 @@ class Clipboard:
         # when list is empty
         if self.length == 0:
             return []
-
-        # when already at the end of the list
-        if self.current_selected_clip == self.tail:
-            return False
-        # when not at the end of list
         else:
             # next command for the first time
             if self.current_selected_clip is None:
@@ -138,11 +138,6 @@ class Clipboard:
         # when list is empty
         if self.length == 0:
             return []
-
-        # when already at the start of the list
-        if self.current_selected_clip == self.head:
-            print("Already at the first node")
-            return False
         else:
             # prev command for the first time
             if self.current_selected_clip is None:
