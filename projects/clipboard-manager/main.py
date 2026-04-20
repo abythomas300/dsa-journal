@@ -49,6 +49,24 @@ def main():
             elif result is True:
                 display.console.print(f"[green]✔ clipboard capped to limit {limit} [/]")
         
+        elif cmd == "next" and len(user_input) == 1:
+            content = cb.next()
+            if content is False:
+                display.console.print("[red]Cannot move forward. Already at the end of the list.[/]")
+            elif len(content) == 0:
+                display.console.print("[dim] Clipboard is empty.[/]")
+            else:
+                display.console.print(f"[bold blue]{content}[/]")
+
+        elif cmd == "prev" and len(user_input) == 1:
+            content = cb.prev()
+            if content is False:
+                display.console.print("[red]Cannot move backwards. Already at the beginning of the list.[/]")
+            elif len(content) == 0:
+                display.console.print("[dim] Clipboard is empty.[/]")
+            else:
+                display.console.print(f"[bold blue]{content}[/]")
+
         elif cmd == "reset":
             cb.clear()
             display.console.print(f"[green]✔ clipboard reset[/]")

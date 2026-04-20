@@ -66,7 +66,6 @@ class Clipboard:
                 clips.append(current.data)
                 current = current.next
                 count += 1
-            print(clips) # test
             return clips
 
     def get_length(self):
@@ -118,32 +117,27 @@ class Clipboard:
     def next(self):
         # when list is empty
         if self.length == 0:
-            print("Clipboard is empty.") # test
-            return False
+            return []
 
         # when already at the end of the list
         if self.current_selected_clip == self.tail:
-            print("Already at the end of the list.") # test
             return False
         # when not at the end of list
         else:
             # next command for the first time
             if self.current_selected_clip is None:
                 self.current_selected_clip = self.head
-                print(f"NEXT:{self.current_selected_clip.data}") # test
                 return self.current_selected_clip.data
             else:
                 # next command not for the first time
                 self.current_selected_clip = self.current_selected_clip.next
-                print(f"NEXT: {self.current_selected_clip.data}") # test
                 return self.current_selected_clip.data
 
     # method to go to previous clip
     def prev(self):
         # when list is empty
         if self.length == 0:
-            print("Clipboard is empty.") # test
-            return False
+            return []
 
         # when already at the start of the list
         if self.current_selected_clip == self.head:
@@ -153,50 +147,8 @@ class Clipboard:
             # prev command for the first time
             if self.current_selected_clip is None:
                 self.current_selected_clip = self.head
-                print(f"PREV:{self.current_selected_clip.data}") # test
                 return self.current_selected_clip.data
             else:
                 # prev command not for the first time
                 self.current_selected_clip = self.current_selected_clip.prev
-                print(f"PREV: {self.current_selected_clip.data}") # test
                 return self.current_selected_clip.data
-
-
-# test method invoke
-# cb = Clipboard()
-# cb.add_clip("first")
-# cb.add_clip("second")
-# cb.add_clip("third")
-# cb.add_clip("fourth")
-# cb.view_clips()
-# cb.prev()
-# cb.prev()
-# cb.next()
-# cb.next()
-# cb.next()
-# cb.next()
-# cb.prev()
-# cb.cap(2)
-# cb.view_clips()
-# cb.prev()
-# cb.prev()
-# cb.next()
-# cb.add_clip("5fifth ok 225645")
-# cb.view_clips()
-# cb.next()
-# # cb.add_clip("6rrew")
-# # cb.add_clip("7sdfds")
-# # cb.add_clip("8")
-# # cb.view_clips()
-# # cb.next()
-# # cb.next()
-# # cb.next()
-# # cb.next()
-# # cb.next()
-# # cb.next()
-# # cb.next()
-# # cb.next()
-# # cb.cap(3)
-# # cb.view_clips()
-# # cb.add_clip("after capping")
-# # cb.view_clips()
