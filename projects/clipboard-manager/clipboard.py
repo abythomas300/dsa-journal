@@ -16,10 +16,9 @@ class Clipboard:
         # create a node
         new_node = Clip(data)
         
-        # when max_length has already set 
+        # when max_length has already set (list is already capped)
         if self.max_length is not None and self.length+1 > self.max_length :
 
-            # if list has only one element
             if self.length == 1:
                 self.head = new_node
                 self.tail = new_node
@@ -41,7 +40,7 @@ class Clipboard:
                 self.head.prev = new_node
 
         else: 
-        # when max_length is not set
+        # when max_length is not set (list is not capped)
             if self.head is None: 
                 self.tail = new_node
             else:
@@ -52,15 +51,12 @@ class Clipboard:
         self.tail.next = self.head
         self.head.prev = self.tail
         self.length += 1
-        # self.current_selected_clip = None # reset current_selected_clip pointer
         return True
 
     def view_clips(self):
-        # if list is empty
         if self.length == 0:
             return []
         else:
-        # if list is not empty
             clips = []
             current = self.head
             count = 1
@@ -73,17 +69,9 @@ class Clipboard:
             count += 1
             return clips
 
-    def get_length(self):
-        if self.length == 0:
-            return 0
-        else:
-            return self.length
-
     def paste(self, index):
-        # if clipboard is empty: return message
         if self.length == 0:
             return []
-        # if not empty: Traverse till that node and return data part
         elif index >=1 and index <= self.length:
             current = self.head
             currentIndex = 1
@@ -108,7 +96,6 @@ class Clipboard:
             self.current_selected_clip = None
             return True
         else:
-            print(f"Invalid cap limit.")
             return False
 
     def clear(self):
@@ -120,7 +107,6 @@ class Clipboard:
 
     # method to go to next clip
     def next(self):
-        # when list is empty
         if self.length == 0:
             return []
         else:
@@ -135,7 +121,6 @@ class Clipboard:
 
     # method to go to previous clip
     def prev(self):
-        # when list is empty
         if self.length == 0:
             return []
         else:
