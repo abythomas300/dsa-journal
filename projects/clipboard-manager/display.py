@@ -10,7 +10,7 @@ def show_header():
 
 def show_commands():
     # Options display
-    console.print("[dim]commands: [cyan]add[/] | [cyan]view[/] | [cyan]paste[/] | [cyan]reset[/] | [cyan]cap[/] | [red]quit[/]")
+    console.print("[dim]commands: [cyan]add[/] | [cyan]view[/] | [cyan]paste[/] | [cyan]reset[/] |[cyan]next[/] | [cyan]prev[/] | [cyan]cap[/] | [red]quit[/]")
 
 def show_table(clips):
 
