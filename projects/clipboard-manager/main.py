@@ -70,6 +70,8 @@ def main():
         elif cmd == "reset":
             cb.clear()
             display.console.print(f"[green]✔ clipboard reset[/]")
+        else:
+            display.console.print(f"[red] ERROR! Please pass correct command[/]")
 
 if __name__ == "__main__":
     main()
